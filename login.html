@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VetCura - Iniciar Sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#003629',
+            'primary-container': '#1b4d3e',
+            secondary: '#256956',
+            'secondary-container': '#a9eed4',
+            surface: '#f7faf8',
+            'surface-container': '#ebefed',
+            'surface-container-low': '#f1f4f2',
+            'on-surface-variant': '#404945',
+          },
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#f7faf8] font-sans text-[#181c1b] min-h-screen flex flex-col justify-between antialiased">
+
+  <!-- Header Global -->
+  <header class="fixed top-0 left-0 right-0 h-16 z-50 bg-[#f7faf8]/90 backdrop-blur-md border-b border-[#e0ebe3]">
+    <div class="w-full h-16 px-4 md:px-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="portal-clientes.html" class="flex items-center gap-2.5">
+          <img
+            alt="VetCura Logo"
+            class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1XYUuanrQRUaeZFswVv5wON06SG-1fKqtOJdZjml43AMp8KSe-hIyqeSMbC8bynqBvh0a6uJSodsQKZ2IXWI3O0oHF8W7LeRIHi0Uw0ClERdJzi51mmvqWn9I0UU1BQYeI8DMcNO_dUgrA0WC1aDdbEuLErPo8ek7GYRIG2t2hDuAGKaC-2Q00vm2OkDBKv37p6QqPn_OP08c-uuJ5CGMe92mxOoRMm7McZFOvevCfJUkufi1qJe2EeDg"
+          />
+          <span class="font-bold text-lg md:text-xl text-[#003629] tracking-tight">VetCura</span>
+        </a>
+        <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629]">
+          <span class="w-2 h-2 rounded-full bg-[#256956]"></span>
+          <span class="text-[11px] uppercase font-bold tracking-wider">Portal Clínico</span>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-1 sm:gap-2">
+        <a href="login.html" class="px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-bold bg-[#1b4d3e] text-white shadow-sm">
+          Inicio / Login
+        </a>
+        <a href="portal-clientes.html" class="px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold text-[#404945] hover:text-[#181c1b] hover:bg-[#ebefed] transition-colors">
+          Portal Clientes
+        </a>
+        <a href="panel-veterinario.html" class="px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold text-[#404945] hover:text-[#181c1b] hover:bg-[#ebefed] transition-colors">
+          Panel Veterinario
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Login Main Container -->
+  <main class="flex-1 flex items-center justify-center px-4 py-24 relative overflow-hidden">
+    <!-- Ambient blurred background elements -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#acf0d7]/30 blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-[#baeed9]/20 blur-3xl pointer-events-none -z-10"></div>
+
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-[#e0ebe3] p-6 sm:p-8 space-y-6 relative">
+      <!-- Profile Type Header -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-[#707974] tracking-wider uppercase text-[11px]">TIPO DE PERFIL</span>
+          <span id="badgeProfile" class="px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629] font-bold text-[11px]">
+            Portal Familiar
+          </span>
+        </div>
+
+        <!-- Selector Tabs -->
+        <div class="grid grid-cols-2 gap-1.5 p-1 rounded-xl bg-[#ebefed]">
+          <button
+            type="button"
+            id="tabOwner"
+            onclick="setProfile('owner')"
+            class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold bg-white text-[#003629] shadow-sm transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px]">pets</span>
+            <span>Dueño de Mascota</span>
+          </button>
+          <button
+            type="button"
+            id="tabVet"
+            onclick="setProfile('vet')"
+            class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-semibold text-[#404945] hover:text-[#181c1b] transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px]">stethoscope</span>
+            <span>Médico Veterinario</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Title & Subtitle -->
+      <div class="space-y-1">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-[#003629] tracking-tight">
+          Bienvenido a tu Espacio
+        </h1>
+        <p id="profileDescription" class="text-xs sm:text-sm text-[#404945]">
+          Ingresa tus credenciales personales para revisar la salud de tus compañeros de vida.
+        </p>
+      </div>
+
+      <!-- Quick Interactive Demo Links -->
+      <div class="p-3 rounded-xl bg-[#f1f4f2] border border-[#e0ebe3] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <div class="flex items-center gap-1.5 text-xs text-[#256956] font-semibold">
+          <span class="material-symbols-outlined text-[16px]">bolt</span>
+          <span>Prueba interactiva inmediata:</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <a
+            href="portal-clientes.html"
+            class="px-2.5 py-1 text-xs font-bold rounded-md bg-white border border-[#c0c9c3] hover:border-[#256956] text-[#003629] hover:bg-[#a9eed4]/30 transition-colors shadow-2xs"
+          >
+            Demo Cliente
+          </a>
+          <a
+            href="panel-veterinario.html"
+            class="px-2.5 py-1 text-xs font-bold rounded-md bg-white border border-[#c0c9c3] hover:border-[#256956] text-[#003629] hover:bg-[#a9eed4]/30 transition-colors shadow-2xs"
+          >
+            Demo Veterinario
+          </a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="loginForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div class="space-y-1">
+          <label class="block text-xs font-bold text-[#003629]" for="emailInput" id="labelEmail">
+            Correo Electrónico Personal
+          </label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#707974] text-[18px]">
+              mail
+            </span>
+            <input
+              id="emailInput"
+              type="email"
+              required
+              value="laura.dominguez@vetcura.cl"
+              placeholder="ejemplo@correo.com"
+              class="w-full pl-10 pr-3 py-2.5 bg-[#f1f4f2] focus:bg-white rounded-xl text-sm text-[#181c1b] border border-transparent focus:border-[#256956] focus:outline-none focus:ring-1 focus:ring-[#256956] transition-all"
+            />
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <div class="flex items-center justify-between text-xs">
+            <label class="font-bold text-[#003629]" for="passwordInput">
+              Contraseña
+            </label>
+            <a href="#" onclick="alert('Se ha enviado un enlace de recuperación a tu correo registrado.')" class="text-[#256956] hover:underline font-medium">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#707974] text-[18px]">
+              lock
+            </span>
+            <input
+              id="passwordInput"
+              type="password"
+              required
+              value="secret1234"
+              class="w-full pl-10 pr-10 py-2.5 bg-[#f1f4f2] focus:bg-white rounded-xl text-sm text-[#181c1b] border border-transparent focus:border-[#256956] focus:outline-none focus:ring-1 focus:ring-[#256956] transition-all"
+            />
+            <button
+              type="button"
+              onclick="togglePassword()"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-[#707974] hover:text-[#181c1b]"
+              title="Mostrar/Ocultar"
+            >
+              <span id="eyeIcon" class="material-symbols-outlined text-[18px]">visibility</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs text-[#404945] pt-1">
+          <label class="flex items-center gap-2 cursor-pointer select-none">
+            <input type="checkbox" checked class="rounded border-[#c0c9c3] text-[#1b4d3e] focus:ring-[#256956]" />
+            <span>Recordar sesión durante 30 días</span>
+          </label>
+          <div class="flex items-center gap-1 text-[#256956] font-medium">
+            <span class="material-symbols-outlined text-[15px]">encrypted</span>
+            <span>Cifrado SSL</span>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3 px-4 rounded-xl bg-[#1b4d3e] hover:bg-[#003629] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all active:scale-[0.99] flex items-center justify-center gap-2"
+        >
+          <span>Iniciar Sesión en VetCura</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </button>
+      </form>
+
+      <div class="text-center pt-2 border-t border-[#e0ebe3]">
+        <p class="text-xs text-[#707974]">
+          ¿Deseas probar ambas vistas? Visita directamente el{' '}
+          <a href="portal-clientes.html" class="font-bold text-[#256956] hover:underline">Portal Clientes</a> o el{' '}
+          <a href="panel-veterinario.html" class="font-bold text-[#256956] hover:underline">Panel Veterinario</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4 text-center text-xs text-[#707974] border-t border-[#e0ebe3]">
+    © 2024 VetCura Veterinary Care Management. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    let currentRole = 'owner';
+
+    function setProfile(role) {
+      currentRole = role;
+      const tabOwner = document.getElementById('tabOwner');
+      const tabVet = document.getElementById('tabVet');
+      const badge = document.getElementById('badgeProfile');
+      const desc = document.getElementById('profileDescription');
+      const labelEmail = document.getElementById('labelEmail');
+      const emailInput = document.getElementById('emailInput');
+
+      if (role === 'owner') {
+        tabOwner.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold bg-white text-[#003629] shadow-sm transition-all";
+        tabVet.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-semibold text-[#404945] hover:text-[#181c1b] transition-all";
+        badge.innerText = "Portal Familiar";
+        desc.innerText = "Ingresa tus credenciales personales para revisar la salud de tus compañeros de vida.";
+        labelEmail.innerText = "Correo Electrónico Personal";
+        emailInput.value = "laura.dominguez@vetcura.cl";
+      } else {
+        tabVet.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold bg-white text-[#003629] shadow-sm transition-all";
+        tabOwner.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-semibold text-[#404945] hover:text-[#181c1b] transition-all";
+        badge.innerText = "Área Médica";
+        desc.innerText = "Accede a la agenda de turnos, expedientes clínicos y administración de boxes.";
+        labelEmail.innerText = "Correo Institucional / Colegio Médico";
+        emailInput.value = "dra.jenkins@vetcura.cl";
+      }
+    }
+
+    function togglePassword() {
+      const input = document.getElementById('passwordInput');
+      const icon = document.getElementById('eyeIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.innerText = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.innerText = 'visibility';
+      }
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      if (currentRole === 'owner') {
+        window.location.href = 'portal-clientes.html';
+      } else {
+        window.location.href = 'panel-veterinario.html';
+      }
+    }
+  </script>
+</body>
+</html>

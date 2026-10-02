@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VetCura - Portal Clientes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#003629',
+            'primary-container': '#1b4d3e',
+            secondary: '#256956',
+            'secondary-container': '#a9eed4',
+            surface: '#f7faf8',
+            'surface-container': '#ebefed',
+            'surface-container-low': '#f1f4f2',
+            'on-surface-variant': '#404945',
+          },
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#f7faf8] font-sans text-[#181c1b] min-h-screen antialiased">
+
+  <!-- Top Global Header -->
+  <header class="fixed top-0 left-0 right-0 h-16 z-40 bg-[#f7faf8]/90 backdrop-blur-md border-b border-[#e0ebe3]">
+    <div class="w-full h-16 px-4 md:px-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="portal-clientes.html" class="flex items-center gap-2.5">
+          <img
+            alt="VetCura Logo"
+            class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1XYUuanrQRUaeZFswVv5wON06SG-1fKqtOJdZjml43AMp8KSe-hIyqeSMbC8bynqBvh0a6uJSodsQKZ2IXWI3O0oHF8W7LeRIHi0Uw0ClERdJzi51mmvqWn9I0UU1BQYeI8DMcNO_dUgrA0WC1aDdbEuLErPo8ek7GYRIG2t2hDuAGKaC-2Q00vm2OkDBKv37p6QqPn_OP08c-uuJ5CGMe92mxOoRMm7McZFOvevCfJUkufi1qJe2EeDg"
+          />
+          <span class="font-bold text-lg md:text-xl text-[#003629] tracking-tight">VetCura</span>
+        </a>
+        <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629]">
+          <span class="w-2 h-2 rounded-full bg-[#256956]"></span>
+          <span class="text-[11px] uppercase font-bold tracking-wider">Portal Clínico</span>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-1 sm:gap-2">
+        <a href="login.html" class="px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold text-[#404945] hover:text-[#181c1b] hover:bg-[#ebefed] transition-colors">
+          Inicio / Login
+        </a>
+        <a href="portal-clientes.html" class="px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-bold bg-[#1b4d3e] text-white shadow-sm">
+          Portal Clientes
+        </a>
+        <a href="panel-veterinario.html" class="px-3 md:px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold text-[#404945] hover:text-[#181c1b] hover:bg-[#ebefed] transition-colors">
+          Panel Veterinario
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button
+          onclick="triggerToast('Notificaciones', 'Tienes 1 recordatorio de desparasitación para Milo.')"
+          class="relative p-2 text-[#404945] hover:text-[#181c1b] transition-colors rounded-full hover:bg-[#ebefed]"
+          title="Notificaciones"
+        >
+          <span class="material-symbols-outlined text-[22px]">notifications</span>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-[#ba1a1a] rounded-full"></span>
+        </button>
+        <div class="flex items-center gap-2">
+          <div class="hidden md:flex flex-col text-right">
+            <span class="text-xs font-bold text-[#181c1b] leading-tight">Laura Domínguez</span>
+            <span class="text-[11px] text-[#256956] font-medium">Tutor Verificado</span>
+          </div>
+          <img
+            alt="Profile"
+            class="w-8 h-8 rounded-full object-cover shadow-[0_0_0_2px_#c7eadc]"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQx6bWiQ9sA1pqjWqktU9CVNIDTIwE_J6aHu2gKpcYiOpnZ6JVTkq-nk6pS8jjALctU8dVHkw4dgjUym6i5ulmRyG55RjIlDLuOfQzWjFo71adTPsEVQ1hsR9pdjglFeELuaguTURIwSPLCuccl4jPBy1aRePpNUvVHnvE-gQEdovugx3wmqu34XSUu-ArwHezV3d9N3Sif2EH_f-odpRyjZNnh1c0oAUWdRUVCNwZE_fEaKH95hw"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="w-full pt-16 min-h-[calc(100vh-4rem)] px-4 md:px-6 py-6">
+    <div class="relative w-full max-w-7xl mx-auto space-y-6">
+      
+      <!-- Ambient glows -->
+      <div class="absolute -top-10 -right-10 w-96 h-96 rounded-full bg-[#acf0d7]/30 blur-3xl pointer-events-none -z-10"></div>
+      <div class="absolute top-80 -left-10 w-80 h-80 rounded-full bg-[#baeed9]/20 blur-3xl pointer-events-none -z-10"></div>
+
+      <!-- Greeting Banner -->
+      <section class="relative w-full bg-white rounded-2xl shadow-xs border border-[#e0ebe3] p-6 md:p-8 overflow-hidden">
+        <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div class="space-y-2 max-w-2xl">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#a9eed4] text-[#003629]">
+              <span class="material-symbols-outlined text-[16px]">verified_user</span>
+              <span class="text-xs uppercase tracking-wider font-bold">Tutor Verificado</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#003629] tracking-tight">
+              ¡Hola, Laura!
+            </h1>
+            <p class="text-sm md:text-base text-[#404945]">
+              Bienvenida al portal de cuidado de tus mascotas en VetCura. Todo su historial clínico,
+              esquemas de vacunación y próximas consultas en un solo espacio sereno y claro.
+            </p>
+            <div class="flex flex-wrap items-center gap-3 pt-1 text-xs sm:text-sm text-[#404945]">
+              <span class="inline-flex items-center gap-1.5 font-semibold text-[#256956]">
+                <span class="w-2 h-2 rounded-full bg-[#256956]"></span> 2 Mascotas registradas
+              </span>
+              <span class="text-[#c0c9c3]">•</span>
+              <span class="inline-flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-[#256956]">calendar_today</span>
+                <span id="apptCountLabel">1 Cita próxima programada</span>
+              </span>
+              <span class="text-[#c0c9c3]">•</span>
+              <span class="inline-flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-[#256956]">security</span>
+                Libre de pulgas y garrapatas
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+            <button
+              type="button"
+              onclick="openBookingModal('Milo', 'Medicina General / Control Preventivo')"
+              class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#1b4d3e] hover:bg-[#003629] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-[0.98]"
+            >
+              <span class="material-symbols-outlined text-[18px]">event_available</span>
+              <span>Agendar Nueva Cita</span>
+            </button>
+            <a
+              href="#historial-section"
+              class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#f1f4f2] text-[#003629] hover:bg-[#ebefed] transition-colors text-sm font-bold"
+            >
+              <span class="material-symbols-outlined text-[18px]">folder_shared</span>
+              <span>Ver Expedientes</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="absolute right-0 bottom-0 pointer-events-none opacity-[0.05] text-[#003629]">
+          <svg fill="none" height="200" viewBox="0 0 340 200" width="340">
+            <circle cx="170" cy="180" fill="currentColor" r="140" />
+            <circle cx="60" cy="80" fill="currentColor" r="40" />
+            <circle cx="280" cy="90" fill="currentColor" r="50" />
+          </svg>
+        </div>
+      </section>
+
+      <!-- Preventative Health Banner -->
+      <section class="bg-[#acf0d7]/35 rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border border-[#cbe6d9]">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#256956] shadow-2xs shrink-0">
+            <span class="material-symbols-outlined text-[22px]">pest_control</span>
+          </div>
+          <div>
+            <span class="text-[11px] uppercase tracking-wider text-[#256956] font-bold block">
+              Recordatorio Preventivo
+            </span>
+            <p class="text-xs sm:text-sm text-[#181c1b]">
+              Próxima dosis de desparasitación interna para <strong>Milo</strong> en 8 días (NexGard Spectra). Reclámala en farmacia o solicita envío.
+            </p>
+          </div>
+        </div>
+        <button
+          type="button"
+          onclick="triggerToast('Farmacia Central', 'Solicitud de envío de NexGard Spectra ingresada para Milo.')"
+          class="px-3.5 py-1.5 rounded-lg bg-white text-[#256956] font-bold text-xs hover:bg-[#a9eed4] hover:text-[#003629] transition-colors shrink-0 shadow-2xs"
+        >
+          Pedir Recambio
+        </button>
+      </section>
+
+      <!-- Bento Grid: Mis Mascotas & Próximas Citas -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left: Mis Mascotas (7 cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#256956] text-[22px]">pets</span>
+              <h2 class="text-xl font-bold text-[#003629]">Mis Mascotas</h2>
+            </div>
+            <button
+              type="button"
+              onclick="triggerToast('Registro de Mascota', 'Ingresa con el chip en recepción para completar el registro.')"
+              class="inline-flex items-center gap-1 text-xs text-[#256956] hover:text-[#003629] font-bold transition-colors"
+            >
+              <span class="material-symbols-outlined text-[16px]">add_circle</span>
+              <span>Registrar Mascota</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <!-- Card Milo -->
+            <article class="bg-white rounded-2xl p-4 shadow-xs border border-[#e0ebe3] flex flex-col justify-between hover:shadow-md transition-shadow group">
+              <div>
+                <div class="relative w-full h-44 rounded-xl overflow-hidden mb-3 bg-[#ebefed]">
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYHQlzAybb2O5qqQlW-wR7Pu9YkueWMMTCSRRH1xySCo_nxWxnTHl_me1L7ktY-L0-GV_O1XBxNrIcKKXyEWQdMq4HU3FMsULas145Yuzd2rXN6hRZ7YON7OhUZHA3L1itq03iHE-QSGjUFNya0VyQQf2olVHyr2Kq-07Pyhqwzx_3qeoYfsSVTKIUyuk5XrrgmBUepfL6jo17jxJ9gXnSfMw6pviKqyMFdGSJVUOyRQe7KRdwYx0"
+                    alt="Milo"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute top-2.5 left-2.5">
+                    <span class="px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-xs text-[#003629] text-[11px] font-bold uppercase tracking-wider shadow-2xs">
+                      Canino
+                    </span>
+                  </div>
+                  <div class="absolute top-2.5 right-2.5">
+                    <span class="px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629] text-[11px] font-bold">
+                      Salud Estable
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex items-start justify-between">
+                  <div>
+                    <h3 class="text-lg font-bold text-[#003629]">Milo</h3>
+                    <p class="text-xs text-[#404945]">Golden Retriever • 3 años</p>
+                  </div>
+                  <span class="px-2 py-0.5 rounded bg-[#f1f4f2] text-[#256956] text-xs font-bold">
+                    32.4 kg
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-1 my-3 p-1 rounded-xl bg-[#f1f4f2] text-center">
+                  <div class="p-1">
+                    <span class="text-[11px] text-[#707974] block">Temp</span>
+                    <span class="text-xs font-bold text-[#003629]">38.6 °C</span>
+                  </div>
+                  <div class="p-1">
+                    <span class="text-[11px] text-[#707974] block">FC</span>
+                    <span class="text-xs font-bold text-[#003629]">88 bpm</span>
+                  </div>
+                  <div class="p-1">
+                    <span class="text-[11px] text-[#707974] block">Cond. C</span>
+                    <span class="text-xs font-bold text-[#003629]">5 / 9</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-[#acf0d7]/30 text-[#1b4d3e]">
+                  <span class="material-symbols-outlined text-[18px] text-[#256956]">vaccines</span>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-bold truncate">Próxima Vacuna: Sextuple Canina</p>
+                    <p class="text-[11px] text-[#256956]">12 de Noviembre, 2024</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-3 mt-3 border-t border-[#e0ebe3] flex items-center justify-between">
+                <a href="#historial-section" class="text-xs text-[#256956] hover:text-[#003629] font-bold inline-flex items-center gap-1">
+                  Ver Carnet Completo <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+                </a>
+                <button
+                  type="button"
+                  onclick="openBookingModal('Milo', 'Vacunación Sextuple')"
+                  class="p-1.5 rounded-lg bg-[#f1f4f2] text-[#003629] hover:bg-[#a9eed4] transition-colors"
+                  title="Agendar turno para Milo"
+                >
+                  <span class="material-symbols-outlined text-[18px]">add_alarm</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- Card Luna -->
+            <article class="bg-white rounded-2xl p-4 shadow-xs border border-[#e0ebe3] flex flex-col justify-between hover:shadow-md transition-shadow group">
+              <div>
+                <div class="relative w-full h-44 rounded-xl overflow-hidden mb-3 bg-[#ebefed]">
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAed3d4ihW7CJHfbhSeJO2ruF4BCWIlNyxUZ_uEAOFzDlNUcyIey47H6kLMC_eF3mw4uSOz9J1NIGnzg68er69U2rrfBxY_WQ1GXlJT1s7IinGuSxdyEJ0MOYq7bJQJvJ1zu975Bx0OGSiiUGUQoNrjdbMsojiZ2rDreynWD-HmEXL9r3slcvkenKtHEdcmueJ1Db_k2c-87Z_2CebDrdz6-MtWbaew83mcraS1iKNXsr4IMm3aajc"
+                    alt="Luna"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute top-2.5 left-2.5">
+                    <span class="px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-xs text-[#003629] text-[11px] font-bold uppercase tracking-wider shadow-2xs">
+                      Felino
+                    </span>
+                  </div>
+                  <div class="absolute top-2.5 right-2.5">
+                    <span class="px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629] text-[11px] font-bold">
+                      Al día
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex items-start justify-between">
+                  <div>
+                    <h3 class="text-lg font-bold text-[#003629]">Luna</h3>
+                    <p class="text-xs text-[#404945]">Gato Siamés • 2 años</p>
+                  </div>
+                  <span class="px-2 py-0.5 rounded bg-[#f1f4f2] text-[#256956] text-xs font-bold">
+                    4.1 kg
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-1 my-3 p-1 rounded-xl bg-[#f1f4f2] text-center">
+                  <div class="p-1">
+                    <span class="text-[11px] text-[#707974] block">Temp</span>
+                    <span class="text-xs font-bold text-[#003629]">38.2 °C</span>
+                  </div>
+                  <div class="p-1">
+                    <span class="text-[11px] text-[#707974] block">FC</span>
+                    <span class="text-xs font-bold text-[#003629]">140 bpm</span>
+                  </div>
+                  <div class="p-1">
+                    <span class="text-[11px] text-[#707974] block">Cond. C</span>
+                    <span class="text-xs font-bold text-[#003629]">5 / 9</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-[#f1f4f2] text-[#404945]">
+                  <span class="material-symbols-outlined text-[18px] text-[#256956]">check_circle</span>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-bold truncate">Control anual al día</p>
+                    <p class="text-[11px] text-[#707974]">Próxima revisión: Feb 2025</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-3 mt-3 border-t border-[#e0ebe3] flex items-center justify-between">
+                <a href="#historial-section" class="text-xs text-[#256956] hover:text-[#003629] font-bold inline-flex items-center gap-1">
+                  Ver Carnet Completo <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+                </a>
+                <button
+                  type="button"
+                  onclick="openBookingModal('Luna', 'Profilaxis y Odontología Felina')"
+                  class="p-1.5 rounded-lg bg-[#f1f4f2] text-[#003629] hover:bg-[#a9eed4] transition-colors"
+                  title="Agendar turno para Luna"
+                >
+                  <span class="material-symbols-outlined text-[18px]">add_alarm</span>
+                </button>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Right: Próximas Citas (5 cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#256956] text-[22px]">event_note</span>
+              <h2 class="text-xl font-bold text-[#003629]">Próximas Citas</h2>
+            </div>
+            <span id="badgeActiveAppts" class="px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629] text-xs font-bold">
+              1 Activa
+            </span>
+          </div>
+
+          <!-- Appointments List Container -->
+          <div id="appointmentsList" class="space-y-4">
+            
+            <!-- Appointment Card Nov 12 -->
+            <div id="cardApptInitial" class="bg-white rounded-2xl p-5 shadow-xs border border-[#e0ebe3] space-y-4">
+              <div class="flex items-start justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-xl bg-[#1b4d3e] text-white flex flex-col items-center justify-center">
+                    <span class="text-[10px] uppercase font-bold leading-none">NOV</span>
+                    <span class="text-base font-extrabold leading-tight">12</span>
+                  </div>
+                  <div>
+                    <span class="text-sm sm:text-base font-bold text-[#003629] block">Vacunación Sextuple</span>
+                    <span class="text-xs text-[#404945]">Para <strong>Milo</strong> • Sala 2</span>
+                  </div>
+                </div>
+                <span class="px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629] text-xs font-bold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#256956]"></span>
+                  Confirmada
+                </span>
+              </div>
+
+              <div class="p-3 rounded-xl bg-[#f1f4f2] space-y-2">
+                <div class="flex items-center gap-2.5">
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhl9BUwsM5SJpgwo8fYoOSsJSk6sh-rIllB81mUQrWTZ0-ztYkGEW3C7UC5C2TvLhZJbuvobW5cNv9Ai_ej7T_aWNLq-dBkuMI7kxwY0uu-xxva1W0keT92j2E99no-0NzRlif96HjU7nRxcWxqLGzKY1ew_rUuL4aZThakGq-mXxvyl7SqdjqEaqOGKtNeyZyF6HvRxgbjW-aRAr1H21pMmUTj9yU6xDMUhZ6nEChNzrHA40Lazc"
+                    alt="Dra. Jenkins"
+                    class="w-10 h-10 rounded-full object-cover shadow-2xs"
+                  />
+                  <div class="min-w-0">
+                    <p class="text-xs sm:text-sm font-bold text-[#003629]">Dra. Jenkins</p>
+                    <p class="text-[11px] text-[#404945] truncate">Especialista en Medicina Preventiva Canina</p>
+                  </div>
+                </div>
+
+                <div class="pt-1 grid grid-cols-2 gap-2 text-xs text-[#404945]">
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-[#256956]">schedule</span>
+                    <span>10:30 AM (30 min)</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-[#256956]">location_on</span>
+                    <span>Sede Norte • Box 3</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 pt-1">
+                <button
+                  type="button"
+                  onclick="openBookingModal('Milo', 'Vacunación Sextuple')"
+                  class="flex-1 py-2 rounded-lg bg-[#f1f4f2] text-[#003629] text-xs font-bold hover:bg-[#ebefed] transition-colors text-center"
+                >
+                  Reprogramar
+                </button>
+                <button
+                  type="button"
+                  onclick="cancelAppt('cardApptInitial')"
+                  class="flex-1 py-2 rounded-lg bg-[#ffdad6]/60 text-[#ba1a1a] text-xs font-bold hover:bg-[#ffdad6] transition-colors text-center"
+                >
+                  Cancelar
+                </button>
+              </div>
+
+              <div class="flex items-start gap-1.5 p-2 rounded-xl bg-white border border-[#e0ebe3] text-[#404945] text-[11px]">
+                <span class="material-symbols-outlined text-[15px] text-[#256956] shrink-0">info</span>
+                <span>Por favor traer a Milo con collar y correa. Ayuno líquido de al menos 1 hora antes de la inmunización.</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Emergency Banner -->
+          <div class="p-4 rounded-2xl bg-[#f1f4f2] border border-[#e0ebe3] flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#256956] text-[24px]">call</span>
+              <div>
+                <p class="text-xs sm:text-sm font-bold text-[#003629]">¿Dudas antes de la consulta?</p>
+                <p class="text-[11px] text-[#404945]">Atención de triage veterinario vía chat 24/7</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onclick="triggerToast('Triage Activo', 'Un asistente veterinario te atenderá en segundos...')"
+              class="px-3.5 py-1.5 rounded-lg bg-white text-[#256956] text-xs font-bold hover:bg-[#a9eed4] hover:text-[#003629] transition-colors shadow-2xs"
+            >
+              Contactar
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Clinical History Section -->
+      <section class="space-y-4 pt-4" id="historial-section">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#256956] text-[22px]">clinical_notes</span>
+              <h2 class="text-xl font-bold text-[#003629]">Historial Clínico & Recetas Recientes</h2>
+            </div>
+            <p class="text-xs sm:text-sm text-[#404945]">
+              Descarga directa de certificados oficiales, carnet de inmunización y prescripciones médicas.
+            </p>
+          </div>
+
+          <div class="inline-flex p-1 rounded-xl bg-[#f1f4f2] border border-[#e0ebe3] self-start md:self-auto">
+            <button
+              type="button"
+              onclick="filterDocs('all', this)"
+              class="filter-doc-btn px-3 py-1 rounded-lg text-xs font-bold bg-white text-[#003629] shadow-2xs transition-all"
+            >
+              Todos
+            </button>
+            <button
+              type="button"
+              onclick="filterDocs('milo', this)"
+              class="filter-doc-btn px-3 py-1 rounded-lg text-xs font-bold text-[#404945] hover:text-[#003629] transition-all"
+            >
+              Milo
+            </button>
+            <button
+              type="button"
+              onclick="filterDocs('luna', this)"
+              class="filter-doc-btn px-3 py-1 rounded-lg text-xs font-bold text-[#404945] hover:text-[#003629] transition-all"
+            >
+              Luna
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <div data-doc="milo" class="doc-card bg-white rounded-2xl p-4 shadow-xs border border-[#e0ebe3] hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629] text-[11px] font-bold">Carnet Digital</span>
+                <span class="text-[11px] text-[#707974]">Actualizado 15 Oct</span>
+              </div>
+              <div class="flex items-center gap-3 pt-1">
+                <div class="w-10 h-10 rounded-xl bg-[#f1f4f2] flex items-center justify-center text-[#256956]">
+                  <span class="material-symbols-outlined text-[22px]">vaccines</span>
+                </div>
+                <div class="min-w-0">
+                  <h4 class="text-sm font-bold text-[#003629] truncate">Carnet de Vacunación</h4>
+                  <p class="text-[11px] text-[#707974]">Milo • Registro #CAN-8921</p>
+                </div>
+              </div>
+              <p class="text-xs text-[#404945]">
+                Incluye Rabia, Parvovirus, Hepatitis y Leptospirosis con timbres veterinarios vigentes.
+              </p>
+            </div>
+            <div class="pt-4">
+              <button
+                type="button"
+                onclick="triggerToast('Descarga Iniciada', 'Generando Carnet_Vacunacion_Milo.pdf con firma criptográfica de la clínica...')"
+                class="w-full inline-flex items-center justify-center gap-1.5 py-2 rounded-xl bg-[#f1f4f2] text-[#003629] hover:bg-[#a9eed4] transition-colors text-xs font-bold"
+              >
+                <span class="material-symbols-outlined text-[16px]">download</span>
+                <span>Descargar PDF (2.4 MB)</span>
+              </button>
+            </div>
+          </div>
+
+          <div data-doc="luna" class="doc-card bg-white rounded-2xl p-4 shadow-xs border border-[#e0ebe3] hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full bg-[#c7eadc] text-[#003629] text-[11px] font-bold">Informe Médico</span>
+                <span class="text-[11px] text-[#707974]">02 Sep, 2024</span>
+              </div>
+              <div class="flex items-center gap-3 pt-1">
+                <div class="w-10 h-10 rounded-xl bg-[#f1f4f2] flex items-center justify-center text-[#256956]">
+                  <span class="material-symbols-outlined text-[22px]">assignment_turned_in</span>
+                </div>
+                <div class="min-w-0">
+                  <h4 class="text-sm font-bold text-[#003629] truncate">Revisión Anual Felina</h4>
+                  <p class="text-[11px] text-[#707974]">Luna • Registro #FEL-4402</p>
+                </div>
+              </div>
+              <p class="text-xs text-[#404945]">
+                Chequeo renal, ecografía abdominal preventiva y perfil hemático en parámetros normales.
+              </p>
+            </div>
+            <div class="pt-4">
+              <button
+                type="button"
+                onclick="triggerToast('Descarga Iniciada', 'Generando Informe_Luna_Sept2024.pdf...')"
+                class="w-full inline-flex items-center justify-center gap-1.5 py-2 rounded-xl bg-[#f1f4f2] text-[#003629] hover:bg-[#a9eed4] transition-colors text-xs font-bold"
+              >
+                <span class="material-symbols-outlined text-[16px]">download</span>
+                <span>Descargar PDF (1.1 MB)</span>
+              </button>
+            </div>
+          </div>
+
+          <div data-doc="milo" class="doc-card bg-white rounded-2xl p-4 shadow-xs border border-[#e0ebe3] hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full bg-[#e6e9e7] text-[#404945] text-[11px] font-bold">Receta Médica</span>
+                <span class="text-[11px] text-[#707974]">20 Ago, 2024</span>
+              </div>
+              <div class="flex items-center gap-3 pt-1">
+                <div class="w-10 h-10 rounded-xl bg-[#f1f4f2] flex items-center justify-center text-[#256956]">
+                  <span class="material-symbols-outlined text-[22px]">prescriptions</span>
+                </div>
+                <div class="min-w-0">
+                  <h4 class="text-sm font-bold text-[#003629] truncate">Tratamiento Ótico Suave</h4>
+                  <p class="text-[11px] text-[#707974]">Milo • Dra. Jenkins</p>
+                </div>
+              </div>
+              <p class="text-xs text-[#404945]">
+                Gotas antibacterianas de amplio espectro, aplicadas cada 12 horas por 7 días.
+              </p>
+            </div>
+            <div class="pt-4">
+              <button
+                type="button"
+                onclick="triggerToast('Descarga Iniciada', 'Generando Receta_Otica_Milo.pdf...')"
+                class="w-full inline-flex items-center justify-center gap-1.5 py-2 rounded-xl bg-[#f1f4f2] text-[#003629] hover:bg-[#a9eed4] transition-colors text-xs font-bold"
+              >
+                <span class="material-symbols-outlined text-[16px]">download</span>
+                <span>Descargar Fórmula PDF</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Clinical Recommendations -->
+      <section class="bg-[#f1f4f2] rounded-2xl p-6 md:p-8 space-y-6 border border-[#e0ebe3]">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+          <div>
+            <span class="text-xs uppercase tracking-wider text-[#256956] font-bold block">Cuidado Integral</span>
+            <h3 class="text-xl md:text-2xl font-bold text-[#003629]">Recomendaciones del Equipo Clínico</h3>
+          </div>
+          <button
+            type="button"
+            onclick="triggerToast('Guía de Bienestar', 'Abriendo guía digital de nutrición y bienestar...')"
+            class="text-xs font-bold text-[#256956] hover:text-[#003629] inline-flex items-center gap-1"
+          >
+            Ver guía de nutrición y bienestar <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-white p-4 rounded-xl space-y-1.5 border border-[#e0ebe3]">
+            <div class="w-8 h-8 rounded-full bg-[#a9eed4] text-[#003629] flex items-center justify-center mb-2">
+              <span class="material-symbols-outlined text-[18px]">water_drop</span>
+            </div>
+            <h4 class="text-sm font-bold text-[#003629]">Hidratación en Felinos</h4>
+            <p class="text-xs text-[#404945]">
+              Luna se beneficia de fuentes de agua corriente para estimular su consumo de líquidos y proteger sus riñones a largo plazo.
+            </p>
+          </div>
+
+          <div class="bg-white p-4 rounded-xl space-y-1.5 border border-[#e0ebe3]">
+            <div class="w-8 h-8 rounded-full bg-[#a9eed4] text-[#003629] flex items-center justify-center mb-2">
+              <span class="material-symbols-outlined text-[18px]">dentistry</span>
+            </div>
+            <h4 class="text-sm font-bold text-[#003629]">Higiene Bucal Periódica</h4>
+            <p class="text-xs text-[#404945]">
+              El cepillado dental suave 2 a 3 veces por semana en Milo previene la acumulación de sarro y enfermedades periodontales complejas.
+            </p>
+          </div>
+
+          <div class="bg-white p-4 rounded-xl space-y-1.5 border border-[#e0ebe3]">
+            <div class="w-8 h-8 rounded-full bg-[#a9eed4] text-[#003629] flex items-center justify-center mb-2">
+              <span class="material-symbols-outlined text-[18px]">monitor_weight</span>
+            </div>
+            <h4 class="text-sm font-bold text-[#003629]">Control de Peso Continuo</h4>
+            <p class="text-xs text-[#404945]">
+              Los 32.4 kg de Milo se mantienen en óptimo rango articular. Recuerda ajustar las porciones según la intensidad del paseo diario.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 py-6 border-t border-[#e0ebe3] text-[#707974] text-xs">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <img
+            alt="VetCura Logo"
+            class="h-5 w-auto opacity-70"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1XYUuanrQRUaeZFswVv5wON06SG-1fKqtOJdZjml43AMp8KSe-hIyqeSMbC8bynqBvh0a6uJSodsQKZ2IXWI3O0oHF8W7LeRIHi0Uw0ClERdJzi51mmvqWn9I0UU1BQYeI8DMcNO_dUgrA0WC1aDdbEuLErPo8ek7GYRIG2t2hDuAGKaC-2Q00vm2OkDBKv37p6QqPn_OP08c-uuJ5CGMe92mxOoRMm7McZFOvevCfJUkufi1qJe2EeDg"
+          />
+          <span class="font-bold text-[#256956]">VetCura Clinical Suite</span>
+        </div>
+        <p>© 2024 VetCura Veterinary Care Management. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-[#003629]">Términos de Servicio</a>
+          <a href="#" class="hover:text-[#003629]">Protocolos Médicos</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ============================================== -->
+  <!-- MODAL: Agendar Nueva Cita (Image 7 Reproduction) -->
+  <!-- ============================================== -->
+  <div id="bookingModalOverlay" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#003629]/40 backdrop-blur-sm overflow-y-auto">
+    <div class="bg-white w-full max-w-3xl rounded-2xl shadow-2xl border border-[#e0ebe3] flex flex-col relative my-auto max-h-[92vh] overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-6 border-b border-[#e0ebe3] bg-white relative">
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629] text-xs font-bold">
+                <span class="material-symbols-outlined text-[14px]">calendar_month</span>
+                Paso 2 de 3: Selección de Especialista y Horario
+              </span>
+              <span class="text-[#256956] text-xs font-semibold">• Sala y Box Clínico</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#003629] tracking-tight">Agendar Nueva Cita</h2>
+            <p class="text-xs sm:text-sm text-[#404945]">Selecciona la mascota, motivo de consulta y horario disponible.</p>
+          </div>
+          
+          <button
+            type="button"
+            onclick="closeBookingModal()"
+            class="p-1.5 rounded-full text-[#404945] hover:text-[#181c1b] hover:bg-[#ebefed] transition-colors"
+          >
+            <span class="material-symbols-outlined text-[24px]">close</span>
+          </button>
+        </div>
+
+        <!-- Stepper -->
+        <div class="grid grid-cols-4 gap-2 pt-4 mt-2">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-[#256956] text-white flex items-center justify-center text-xs font-bold shrink-0">
+              <span class="material-symbols-outlined text-[14px]">check</span>
+            </div>
+            <span class="text-xs font-bold text-[#256956] hidden sm:block truncate">1. Mascota & Motivo</span>
+            <div class="h-0.5 bg-[#256956] flex-1 mx-1 hidden md:block"></div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-[#1b4d3e] text-white flex items-center justify-center text-xs font-bold shrink-0 ring-2 ring-[#a9eed4] ring-offset-1">
+              2
+            </div>
+            <span class="text-xs font-bold text-[#003629] hidden sm:block truncate">2. Especialista & Sede</span>
+            <div class="h-0.5 bg-[#c0c9c3] flex-1 mx-1 hidden md:block"></div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-[#ebefed] text-[#707974] flex items-center justify-center text-xs font-semibold shrink-0">
+              3
+            </div>
+            <span class="text-xs text-[#707974] hidden sm:block truncate">3. Fecha & Turno</span>
+            <div class="h-0.5 bg-[#c0c9c3] flex-1 mx-1 hidden md:block"></div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-[#ebefed] text-[#707974] flex items-center justify-center text-xs font-semibold shrink-0">
+              4
+            </div>
+            <span class="text-xs text-[#707974] hidden sm:block truncate">4. Confirmación</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="overflow-y-auto p-4 sm:p-6 space-y-5">
+        
+        <!-- Patient Banner & Modality -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center p-3 rounded-xl bg-[#f1f4f2] border border-[#e0ebe3]">
+          <div class="md:col-span-7 flex items-center gap-3">
+            <img
+              id="modalPetAvatar"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYHQlzAybb2O5qqQlW-wR7Pu9YkueWMMTCSRRH1xySCo_nxWxnTHl_me1L7ktY-L0-GV_O1XBxNrIcKKXyEWQdMq4HU3FMsULas145Yuzd2rXN6hRZ7YON7OhUZHA3L1itq03iHE-QSGjUFNya0VyQQf2olVHyr2Kq-07Pyhqwzx_3qeoYfsSVTKIUyuk5XrrgmBUepfL6jo17jxJ9gXnSfMw6pviKqyMFdGSJVUOyRQe7KRdwYx0"
+              alt="Milo"
+              class="w-12 h-12 rounded-lg object-cover border border-[#c0c9c3] shadow-xs shrink-0"
+            />
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span id="modalPetName" class="font-bold text-[#003629] text-base">Milo</span>
+                <span id="modalPetBreed" class="px-2 py-0.5 rounded-full bg-[#a9eed4] text-[#003629] text-[11px] font-bold">
+                  Canino • 3 años
+                </span>
+                <button type="button" onclick="toggleModalPet()" class="text-[11px] text-[#256956] hover:underline font-bold">
+                  Cambiar
+                </button>
+              </div>
+              <p class="text-xs text-[#404945] truncate">
+                Motivo: <strong id="modalPetReason" class="text-[#256956]">Medicina General / Control Preventivo</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="md:col-span-5 flex justify-end">
+            <div class="inline-flex p-1 rounded-lg bg-white border border-[#c0c9c3] w-full sm:w-auto">
+              <button
+                type="button"
+                id="btnPresencial"
+                onclick="setModality('presencial')"
+                class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1b4d3e] text-white shadow-xs"
+              >
+                <span class="material-symbols-outlined text-[16px]">domain</span>
+                <span>Presencial (Central)</span>
+              </button>
+              <button
+                type="button"
+                id="btnTele"
+                onclick="setModality('tele')"
+                class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold text-[#404945] hover:text-[#003629]"
+              >
+                <span class="material-symbols-outlined text-[16px]">videocam</span>
+                <span>Telemedicina 24/7</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor Choice -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-bold text-[#003629] flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[#256956] text-[18px]">stethoscope</span>
+              <span>Selecciona el Médico Veterinario</span>
+            </label>
+            <span class="text-xs text-[#256956] font-semibold">Especialistas disponibles hoy</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <!-- Doctor 1: Dra. Jenkins -->
+            <div
+              id="docCardJenkins"
+              onclick="setDoctor('jenkins')"
+              class="relative cursor-pointer rounded-xl p-3 border-2 border-[#003629] bg-[#acf0d7]/20 shadow-sm flex items-center justify-between transition-all"
+            >
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhl9BUwsM5SJpgwo8fYoOSsJSk6sh-rIllB81mUQrWTZ0-ztYkGEW3C7UC5C2TvLhZJbuvobW5cNv9Ai_ej7T_aWNLq-dBkuMI7kxwY0uu-xxva1W0keT92j2E99no-0NzRlif96HjU7nRxcWxqLGzKY1ew_rUuL4aZThakGq-mXxvyl7SqdjqEaqOGKtNeyZyF6HvRxgbjW-aRAr1H21pMmUTj9yU6xDMUhZ6nEChNzrHA40Lazc"
+                    alt="Dra. Jenkins"
+                    class="w-12 h-12 rounded-full object-cover ring-2 ring-[#256956]"
+                  />
+                  <span class="absolute bottom-0 right-0 w-3 h-3 bg-[#256956] rounded-full border-2 border-white"></span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5">
+                    <h4 class="font-bold text-sm text-[#003629]">Dra. Sofía Jenkins</h4>
+                    <span class="text-[11px] font-bold text-[#256956] bg-white px-1.5 py-0.5 rounded border border-[#a9eed4]">
+                      ★ 4.9
+                    </span>
+                  </div>
+                  <p class="text-xs text-[#404945]">Medicina Preventiva & Caninos</p>
+                  <p class="text-xs font-semibold text-[#256956] mt-0.5">
+                    $24.000 CLP <span class="text-[#707974] font-normal">($30 USD)</span>
+                  </p>
+                </div>
+              </div>
+              <div id="checkJenkins" class="w-6 h-6 rounded-full bg-[#003629] text-white flex items-center justify-center shadow-xs">
+                <span class="material-symbols-outlined text-[15px] font-bold">check</span>
+              </div>
+            </div>
+
+            <!-- Doctor 2: Dr. Silva -->
+            <div
+              id="docCardSilva"
+              onclick="setDoctor('silva')"
+              class="relative cursor-pointer rounded-xl p-3 border border-[#e0ebe3] bg-white hover:border-[#256956] flex items-center justify-between transition-all"
+            >
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <div class="w-12 h-12 rounded-full bg-[#a9eed4] text-[#003629] flex items-center justify-center font-bold text-base shadow-xs ring-1 ring-[#256956]">
+                    AS
+                  </div>
+                  <span class="absolute bottom-0 right-0 w-3 h-3 bg-[#256956] rounded-full border-2 border-white"></span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5">
+                    <h4 class="font-bold text-sm text-[#003629]">Dr. Andrés Silva</h4>
+                    <span class="text-[11px] font-bold text-[#256956] bg-[#f1f4f2] px-1.5 py-0.5 rounded">
+                      ★ 4.8
+                    </span>
+                  </div>
+                  <p class="text-xs text-[#404945]">Cirugía & Traumatología</p>
+                  <p class="text-xs font-semibold text-[#256956] mt-0.5">
+                    $28.000 CLP <span class="text-[#707974] font-normal">($35 USD)</span>
+                  </p>
+                </div>
+              </div>
+              <div id="checkSilva" class="w-6 h-6 rounded-full border border-[#c0c9c3] hidden items-center justify-center text-white bg-[#003629]">
+                <span class="material-symbols-outlined text-[15px] font-bold">check</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date & Available Slots -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-sm font-bold text-[#003629] flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[#256956] text-[18px]">calendar_today</span>
+              <span>Fecha & Horarios Disponibles</span>
+            </label>
+            <span class="text-xs text-[#707974]">Octubre 2024</span>
+          </div>
+
+          <!-- Days Grid -->
+          <div class="grid grid-cols-5 gap-2" id="dayButtonsContainer">
+            <button type="button" onclick="selectDay(this, 'Lun', '23', 'Lunes 23 Oct')" class="day-btn p-2 sm:p-2.5 rounded-xl border border-[#e0ebe3] bg-white text-center hover:border-[#256956] transition-all">
+              <span class="block text-xs uppercase font-medium text-[#707974]">Lun</span>
+              <span class="block text-base sm:text-lg font-bold text-[#003629]">23</span>
+              <span class="block text-[10px] font-semibold text-[#256956]">3 cupos</span>
+            </button>
+            <button type="button" onclick="selectDay(this, 'Mar', '24', 'Martes 24 Oct')" class="day-btn p-2 sm:p-2.5 rounded-xl border border-[#e0ebe3] bg-white text-center hover:border-[#256956] transition-all">
+              <span class="block text-xs uppercase font-medium text-[#707974]">Mar</span>
+              <span class="block text-base sm:text-lg font-bold text-[#003629]">24</span>
+              <span class="block text-[10px] font-semibold text-[#256956]">2 cupos</span>
+            </button>
+            <button type="button" onclick="selectDay(this, 'Mié', '25', 'Miércoles 25 Oct')" class="day-btn active-day p-2 sm:p-2.5 rounded-xl border-2 border-[#003629] bg-[#1b4d3e] text-white text-center shadow-sm transition-all">
+              <span class="block text-xs uppercase font-medium text-[#a9eed4]">Mié</span>
+              <span class="block text-base sm:text-lg font-bold text-white">25</span>
+              <span class="block text-[10px] font-semibold text-[#acf0d7]">6 cupos</span>
+            </button>
+            <button type="button" onclick="selectDay(this, 'Jue', '26', 'Jueves 26 Oct')" class="day-btn p-2 sm:p-2.5 rounded-xl border border-[#e0ebe3] bg-white text-center hover:border-[#256956] transition-all">
+              <span class="block text-xs uppercase font-medium text-[#707974]">Jue</span>
+              <span class="block text-base sm:text-lg font-bold text-[#003629]">26</span>
+              <span class="block text-[10px] font-semibold text-[#256956]">4 cupos</span>
+            </button>
+            <button type="button" onclick="selectDay(this, 'Vie', '27', 'Viernes 27 Oct')" class="day-btn p-2 sm:p-2.5 rounded-xl border border-[#e0ebe3] bg-white text-center hover:border-[#256956] transition-all">
+              <span class="block text-xs uppercase font-medium text-[#707974]">Vie</span>
+              <span class="block text-base sm:text-lg font-bold text-[#003629]">27</span>
+              <span class="block text-[10px] font-semibold text-[#256956]">5 cupos</span>
+            </button>
+          </div>
+
+          <!-- Morning Slots -->
+          <div class="space-y-1.5 pt-1">
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] uppercase font-bold text-[#256956] tracking-wider">Turno Mañana</span>
+              <div class="h-px bg-[#e0ebe3] flex-1"></div>
+            </div>
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2" id="morningSlotGrid">
+              <button type="button" onclick="selectTime(this, '09:00 AM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">09:00 AM</button>
+              <button type="button" onclick="selectTime(this, '09:30 AM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">09:30 AM</button>
+              <button type="button" onclick="selectTime(this, '10:15 AM')" class="time-btn active-time py-2 px-1 text-center rounded-lg text-xs font-semibold border-2 border-[#003629] bg-[#1b4d3e] text-white shadow-sm">10:15 AM</button>
+              <button type="button" onclick="selectTime(this, '11:00 AM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">11:00 AM</button>
+              <button type="button" onclick="selectTime(this, '11:45 AM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">11:45 AM</button>
+              <button type="button" disabled class="py-2 px-1 text-center rounded-lg text-xs font-medium bg-[#ebefed] text-[#707974] opacity-50 cursor-not-allowed">12:15 PM</button>
+            </div>
+          </div>
+
+          <!-- Afternoon Slots -->
+          <div class="space-y-1.5 pt-1">
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] uppercase font-bold text-[#256956] tracking-wider">Turno Tarde</span>
+              <div class="h-px bg-[#e0ebe3] flex-1"></div>
+            </div>
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2" id="afternoonSlotGrid">
+              <button type="button" onclick="selectTime(this, '03:00 PM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">03:00 PM</button>
+              <button type="button" onclick="selectTime(this, '03:30 PM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">03:30 PM</button>
+              <button type="button" onclick="selectTime(this, '04:15 PM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">04:15 PM</button>
+              <button type="button" onclick="selectTime(this, '05:00 PM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">05:00 PM</button>
+              <button type="button" onclick="selectTime(this, '05:30 PM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">05:30 PM</button>
+              <button type="button" onclick="selectTime(this, '06:15 PM')" class="time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]">06:15 PM</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-[#003629] block" for="modalNotesInput">
+            Motivo o síntomas observados <span class="font-normal text-[#707974]">(Opcional)</span>
+          </label>
+          <div class="relative">
+            <textarea
+              id="modalNotesInput"
+              rows="2"
+              placeholder="Describe brevemente si tu mascota presenta decaimiento, molestias digestivas, consultas sobre vacunación preventiva..."
+              class="w-full bg-[#f1f4f2] focus:bg-white rounded-xl p-3 text-xs sm:text-sm text-[#181c1b] border border-[#e0ebe3] focus:border-[#256956] focus:outline-none focus:ring-1 focus:ring-[#256956] transition-colors placeholder:text-[#707974]"
+            ></textarea>
+            <span class="material-symbols-outlined text-[18px] text-[#707974] absolute right-3 bottom-3 pointer-events-none">
+              edit_note
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 sm:p-5 bg-[#f1f4f2] border-t border-[#e0ebe3] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5 w-full sm:w-auto">
+          <div class="w-10 h-10 rounded-lg bg-[#a9eed4] text-[#003629] flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[20px]">event_available</span>
+          </div>
+          <div>
+            <p class="text-[11px] uppercase text-[#256956] font-bold tracking-wider">Resumen de Turno</p>
+            <p id="modalSummaryText" class="text-xs sm:text-sm font-bold text-[#003629]">
+              Miércoles 25 Oct • 10:15 AM • Box 02 con Dra. Jenkins
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+          <button
+            type="button"
+            onclick="closeBookingModal()"
+            class="px-4 py-2.5 rounded-lg border border-[#c0c9c3] bg-white text-[#181c1b] text-xs sm:text-sm font-semibold hover:bg-[#ebefed] transition-colors"
+          >
+            Cancelar / Volver
+          </button>
+          <button
+            type="button"
+            onclick="confirmNewAppointment()"
+            class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg bg-[#1b4d3e] hover:bg-[#003629] text-white text-xs sm:text-sm font-semibold transition-all shadow-md active:scale-[0.98]"
+          >
+            <span class="material-symbols-outlined text-[18px]">check_circle</span>
+            <span>Confirmar y Agendar Cita</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notification Toast Element -->
+  <div id="toastBox" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-white text-[#003629] rounded-2xl shadow-xl border border-[#cbe6d9] p-4 flex items-center gap-3.5 max-w-md">
+      <div class="w-9 h-9 rounded-xl bg-[#a9eed4] text-[#003629] flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-[20px]">check</span>
+      </div>
+      <div>
+        <p id="toastTitle" class="text-sm font-bold text-[#003629]">¡Acción Completada!</p>
+        <p id="toastMessage" class="text-xs text-[#404945]">Confirmación enviada.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentPet = 'Milo';
+    let currentDoctor = 'Dra. Jenkins';
+    let currentBox = 'Box 02';
+    let currentDayStr = 'Miércoles 25 Oct';
+    let currentDayNum = '25';
+    let currentDayMonth = 'OCT';
+    let currentTimeStr = '10:15 AM';
+    let totalAppointments = 1;
+
+    function openBookingModal(pet, reason) {
+      if (pet) currentPet = pet;
+      const petNameEl = document.getElementById('modalPetName');
+      const petBreedEl = document.getElementById('modalPetBreed');
+      const petReasonEl = document.getElementById('modalPetReason');
+      const petAvatarEl = document.getElementById('modalPetAvatar');
+
+      if (currentPet === 'Milo') {
+        petNameEl.innerText = 'Milo';
+        petBreedEl.innerText = 'Canino • 3 años';
+        petReasonEl.innerText = reason || 'Medicina General / Control Preventivo';
+        petAvatarEl.src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDYHQlzAybb2O5qqQlW-wR7Pu9YkueWMMTCSRRH1xySCo_nxWxnTHl_me1L7ktY-L0-GV_O1XBxNrIcKKXyEWQdMq4HU3FMsULas145Yuzd2rXN6hRZ7YON7OhUZHA3L1itq03iHE-QSGjUFNya0VyQQf2olVHyr2Kq-07Pyhqwzx_3qeoYfsSVTKIUyuk5XrrgmBUepfL6jo17jxJ9gXnSfMw6pviKqyMFdGSJVUOyRQe7KRdwYx0';
+      } else {
+        petNameEl.innerText = 'Luna';
+        petBreedEl.innerText = 'Felino • 2 años';
+        petReasonEl.innerText = reason || 'Profilaxis y Odontología Felina';
+        petAvatarEl.src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAed3d4ihW7CJHfbhSeJO2ruF4BCWIlNyxUZ_uEAOFzDlNUcyIey47H6kLMC_eF3mw4uSOz9J1NIGnzg68er69U2rrfBxY_WQ1GXlJT1s7IinGuSxdyEJ0MOYq7bJQJvJ1zu975Bx0OGSiiUGUQoNrjdbMsojiZ2rDreynWD-HmEXL9r3slcvkenKtHEdcmueJ1Db_k2c-87Z_2CebDrdz6-MtWbaew83mcraS1iKNXsr4IMm3aajc';
+      }
+
+      document.getElementById('bookingModalOverlay').classList.remove('hidden');
+      updateModalSummary();
+    }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModalOverlay').classList.add('hidden');
+    }
+
+    function toggleModalPet() {
+      if (currentPet === 'Milo') {
+        openBookingModal('Luna', 'Revisión General Felina');
+      } else {
+        openBookingModal('Milo', 'Medicina General / Control Preventivo');
+      }
+    }
+
+    function setDoctor(doc) {
+      const cardJ = document.getElementById('docCardJenkins');
+      const cardS = document.getElementById('docCardSilva');
+      const checkJ = document.getElementById('checkJenkins');
+      const checkS = document.getElementById('checkSilva');
+
+      if (doc === 'jenkins') {
+        currentDoctor = 'Dra. Jenkins';
+        currentBox = 'Box 02';
+        cardJ.className = "relative cursor-pointer rounded-xl p-3 border-2 border-[#003629] bg-[#acf0d7]/20 shadow-sm flex items-center justify-between transition-all";
+        checkJ.className = "w-6 h-6 rounded-full bg-[#003629] text-white flex items-center justify-center shadow-xs";
+        cardS.className = "relative cursor-pointer rounded-xl p-3 border border-[#e0ebe3] bg-white hover:border-[#256956] flex items-center justify-between transition-all";
+        checkS.className = "w-6 h-6 rounded-full border border-[#c0c9c3] hidden items-center justify-center text-white bg-[#003629]";
+      } else {
+        currentDoctor = 'Dr. Silva';
+        currentBox = 'Box 05';
+        cardS.className = "relative cursor-pointer rounded-xl p-3 border-2 border-[#003629] bg-[#acf0d7]/20 shadow-sm flex items-center justify-between transition-all";
+        checkS.className = "w-6 h-6 rounded-full bg-[#003629] text-white flex items-center justify-center shadow-xs";
+        cardJ.className = "relative cursor-pointer rounded-xl p-3 border border-[#e0ebe3] bg-white hover:border-[#256956] flex items-center justify-between transition-all";
+        checkJ.className = "w-6 h-6 rounded-full border border-[#c0c9c3] hidden items-center justify-center text-white bg-[#003629]";
+      }
+      updateModalSummary();
+    }
+
+    function selectDay(btn, dayName, num, fullLabel) {
+      currentDayStr = fullLabel;
+      currentDayNum = num;
+      const allBtns = document.querySelectorAll('.day-btn');
+      allBtns.forEach(b => {
+        b.className = "day-btn p-2 sm:p-2.5 rounded-xl border border-[#e0ebe3] bg-white text-center hover:border-[#256956] transition-all";
+        const spans = b.querySelectorAll('span');
+        if (spans[0]) spans[0].className = "block text-xs uppercase font-medium text-[#707974]";
+        if (spans[1]) spans[1].className = "block text-base sm:text-lg font-bold text-[#003629]";
+        if (spans[2]) spans[2].className = "block text-[10px] font-semibold text-[#256956]";
+      });
+
+      btn.className = "day-btn active-day p-2 sm:p-2.5 rounded-xl border-2 border-[#003629] bg-[#1b4d3e] text-white text-center shadow-sm transition-all";
+      const spans = btn.querySelectorAll('span');
+      if (spans[0]) spans[0].className = "block text-xs uppercase font-medium text-[#a9eed4]";
+      if (spans[1]) spans[1].className = "block text-base sm:text-lg font-bold text-white";
+      if (spans[2]) spans[2].className = "block text-[10px] font-semibold text-[#acf0d7]";
+
+      updateModalSummary();
+    }
+
+    function selectTime(btn, time) {
+      currentTimeStr = time;
+      const allTimeBtns = document.querySelectorAll('.time-btn');
+      allTimeBtns.forEach(b => {
+        b.className = "time-btn py-2 px-1 text-center rounded-lg text-xs font-semibold border border-[#e0ebe3] bg-white text-[#003629] hover:border-[#256956]";
+      });
+      btn.className = "time-btn active-time py-2 px-1 text-center rounded-lg text-xs font-semibold border-2 border-[#003629] bg-[#1b4d3e] text-white shadow-sm";
+      updateModalSummary();
+    }
+
+    function setModality(mode) {
+      const btnP = document.getElementById('btnPresencial');
+      const btnT = document.getElementById('btnTele');
+      if (mode === 'presencial') {
+        btnP.className = "flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1b4d3e] text-white shadow-xs";
+        btnT.className = "flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold text-[#404945] hover:text-[#003629]";
+      } else {
+        btnT.className = "flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1b4d3e] text-white shadow-xs";
+        btnP.className = "flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold text-[#404945] hover:text-[#003629]";
+      }
+    }
+
+    function updateModalSummary() {
+      const summary = document.getElementById('modalSummaryText');
+      if (summary) {
+        summary.innerText = `${currentDayStr} • ${currentTimeStr} • ${currentBox} con ${currentDoctor}`;
+      }
+    }
+
+    function confirmNewAppointment() {
+      closeBookingModal();
+      totalAppointments++;
+      document.getElementById('badgeActiveAppts').innerText = `${totalAppointments} Activas`;
+      document.getElementById('apptCountLabel').innerText = `${totalAppointments} Citas próximas programadas`;
+
+      // Prepend newly created appointment card
+      const list = document.getElementById('appointmentsList');
+      const newCard = document.createElement('div');
+      newCard.className = "bg-white rounded-2xl p-5 shadow-xs border border-[#a9eed4] space-y-4 animate-fade-in";
+      newCard.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-[#003629] text-white flex flex-col items-center justify-center">
+              <span class="text-[10px] uppercase font-bold leading-none">${currentDayMonth}</span>
+              <span class="text-base font-extrabold leading-tight">${currentDayNum}</span>
+            </div>
+            <div>
+              <span class="text-sm sm:text-base font-bold text-[#003629] block">Control Preventivo Clínico</span>
+              <span class="text-xs text-[#404945]">Para <strong>${currentPet}</strong> • ${currentBox}</span>
+            </div>
+          </div>
+          <span class="px-2.5 py-0.5 rounded-full bg-[#a9eed4] text-[#003629] text-xs font-bold flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#256956]"></span>
+            Confirmada
+          </span>
+        </div>
+        <div class="p-3 rounded-xl bg-[#f1f4f2] space-y-2">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-full bg-[#a9eed4] text-[#003629] flex items-center justify-center font-bold text-sm">
+              ${currentDoctor === 'Dra. Jenkins' ? 'DJ' : 'AS'}
+            </div>
+            <div class="min-w-0">
+              <p class="text-xs sm:text-sm font-bold text-[#003629]">${currentDoctor}</p>
+              <p class="text-[11px] text-[#404945] truncate">Atención Clínica Veterinaria</p>
+            </div>
+          </div>
+          <div class="pt-1 grid grid-cols-2 gap-2 text-xs text-[#404945]">
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-[#256956]">schedule</span>
+              <span>${currentTimeStr} (30 min)</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-[#256956]">location_on</span>
+              <span>Sede Central • ${currentBox}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      list.prepend(newCard);
+
+      triggerToast('¡Cita Confirmada con Éxito!', `Reserva para ${currentPet} el ${currentDayStr} a las ${currentTimeStr} con ${currentDoctor}. Recordatorio enviado a tu correo.`);
+    }
+
+    function cancelAppt(cardId) {
+      if (confirm('¿Estás seguro de cancelar esta cita? Podrás reagendarla cuando desees.')) {
+        const el = document.getElementById(cardId);
+        if (el) el.remove();
+        totalAppointments = Math.max(0, totalAppointments - 1);
+        document.getElementById('badgeActiveAppts').innerText = `${totalAppointments} Activas`;
+        document.getElementById('apptCountLabel').innerText = `${totalAppointments} Citas próximas programadas`;
+        triggerToast('Cita Cancelada', 'El turno ha sido cancelado y liberado en la agenda.');
+      }
+    }
+
+    function filterDocs(pet, btn) {
+      const allBtns = document.querySelectorAll('.filter-doc-btn');
+      allBtns.forEach(b => {
+        b.className = "filter-doc-btn px-3 py-1 rounded-lg text-xs font-bold text-[#404945] hover:text-[#003629] transition-all";
+      });
+      btn.className = "filter-doc-btn px-3 py-1 rounded-lg text-xs font-bold bg-white text-[#003629] shadow-2xs transition-all";
+
+      const cards = document.querySelectorAll('.doc-card');
+      cards.forEach(c => {
+        const docPet = c.getAttribute('data-doc');
+        if (pet === 'all' || docPet === pet) {
+          c.style.display = 'flex';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+
+    function triggerToast(title, message) {
+      const box = document.getElementById('toastBox');
+      const t = document.getElementById('toastTitle');
+      const m = document.getElementById('toastMessage');
+      if (t) t.innerText = title;
+      if (m) m.innerText = message;
+
+      box.classList.remove('translate-y-24', 'opacity-0');
+      box.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        box.classList.remove('translate-y-0', 'opacity-100');
+        box.classList.add('translate-y-24', 'opacity-0');
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
